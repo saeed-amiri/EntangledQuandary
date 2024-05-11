@@ -55,7 +55,20 @@ def not_gate(qubit: 'GridQubit'
 
 def hadamard_gate(qubit: 'GridQubit'
                   ) -> 'Circuit':
-    """apply Hadamard gate to the circuit"""
+    """apply Hadamard gate to the circuit
+    Hadamard gate is also known as H gate.
+    It enables us to take a qubit frin a definite state to a
+    superposition of two states.
+    H := [[1, 1], [1, -1]] / sqrt(2)
+    H|0⟩ = (|0⟩ + |1⟩) / sqrt(2)
+    H|1⟩ = (|0⟩ - |1⟩) / sqrt(2)
+    the probability of measuring |0⟩ or |1⟩ is 50%.
+    the phase of |0⟩ is 0 and the phase of |1⟩ is 180 degrees in the
+    Bloch sphere.
+    The Hadamard gate is self-inverse.
+    The sqrt(2) is used to normalize the state vector and is a reult of
+    the Born rule.
+    """
     circuit = cirq.Circuit(
         cirq.H(qubit),  # Hadamard gate
         cirq.measure(qubit, key='m')  # measurement
