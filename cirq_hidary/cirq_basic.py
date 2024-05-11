@@ -21,7 +21,16 @@ def simulating_circuit(circuit: 'Circuit',
 
 def not_gate(qubit: 'GridQubit'
              ) -> 'Circuit':
-    """apply NOT gate to the circuit"""
+    """apply NOT gate to the circuit
+    NOT gate is also known as X, Pauli-X, or bit-flip gate.
+    Pauli X := [[0, 1], [1, 0]
+    X := |0⟩⟨1| + |1⟩⟨0|
+    X|0⟩ = |1⟩
+    X|1⟩ = |0⟩
+
+    key: 'm' is used to get the measurement results.
+    """
+    print(qubit)
     circuit = cirq.Circuit(
         cirq.X(qubit),  # NOT gate
         cirq.measure(qubit, key='m')  # measurement
@@ -71,7 +80,7 @@ def main():
     print_circuit("NOT", circuit)
     # Simulate the circuit
 
-    result = simulating_circuit(circuit, repetitions := 10)
+    result = simulating_circuit(circuit, repetitions := 1)
 
     # Print the results
     print_result_with_histogram(repetitions, result)
