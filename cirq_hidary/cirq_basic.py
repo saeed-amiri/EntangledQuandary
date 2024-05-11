@@ -11,6 +11,15 @@ if typing.TYPE_CHECKING:
     from cirq import Circuit, GridQubit, Simulator, Result
 
 
+def get_state_vector(qubit: 'GridQubit'
+                     ) -> None:
+    """Get the state vector of the qubit."""
+    circuit = cirq.Circuit(cirq.I(qubit))
+    simulator: "Simulator" = cirq.Simulator()
+    result = simulator.simulate(circuit)
+    print(f"State vector of the qubit: {result.final_state_vector}\n")
+
+
 def simulating_circuit(circuit: 'Circuit',
                        repetitions: int = 20
                        ) -> 'Result':
@@ -30,7 +39,6 @@ def not_gate(qubit: 'GridQubit'
 
     key: 'm' is used to get the measurement results.
     """
-    print(qubit)
     circuit = cirq.Circuit(
         cirq.X(qubit),  # NOT gate
         cirq.measure(qubit, key='m')  # measurement
@@ -74,12 +82,15 @@ def main():
     """Run the program."""
     # Pick a qubit.
     qubit = cirq.GridQubit(0, 0)
+    
+    # get the state vector of the circuit
+    get_state_vector(qubit)
 
     # Apply NOT gate
     circuit = not_gate(qubit)
     print_circuit("NOT", circuit)
-    # Simulate the circuit
 
+    # Simulate the circuit
     result = simulating_circuit(circuit, repetitions := 1)
 
     # Print the results
