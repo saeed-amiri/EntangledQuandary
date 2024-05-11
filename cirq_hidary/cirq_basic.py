@@ -13,7 +13,14 @@ if typing.TYPE_CHECKING:
 
 def get_state_vector(qubit: 'GridQubit'
                      ) -> None:
-    """Get the state vector of the qubit."""
+    """Get the state vector of the qubit.
+    I is the identity gate.
+    |0⟩ = [1, 0]
+    |1⟩ = [0, 1]
+    I := [[1, 0], [0, 1]]
+    I|0⟩ = |0⟩
+    I|1⟩ = |1⟩
+    """
     circuit = cirq.Circuit(cirq.I(qubit))
     simulator: "Simulator" = cirq.Simulator()
     result = simulator.simulate(circuit)
