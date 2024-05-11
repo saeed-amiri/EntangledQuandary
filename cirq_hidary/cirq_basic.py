@@ -89,27 +89,27 @@ def main():
     """Run the program."""
     # Pick a qubit.
     qubit = cirq.GridQubit(0, 0)
-    
+
     # get the state vector of the circuit
     get_state_vector(qubit)
 
     # Apply NOT gate
-    circuit = not_gate(qubit)
-    print_circuit("NOT", circuit)
+    circuit_not = not_gate(qubit)
+    print_circuit("NOT", circuit_not)
 
     # Simulate the circuit
-    result = simulating_circuit(circuit, repetitions := 1)
+    result = simulating_circuit(circuit_not, repetitions := 10)
 
     # Print the results
     print_result_with_histogram(repetitions, result)
 
     # Apply Hadamard gate
-    circuit = hadamard_gate(qubit)
+    circuit_had = hadamard_gate(qubit)
 
-    print_circuit("Hadamard", circuit)
+    print_circuit("Hadamard", circuit_had)
 
     # Simulate the circuit
-    result = simulating_circuit(circuit, repetitions := 10)
+    result = simulating_circuit(circuit_had, repetitions := 10)
 
     # Print the results
     print_result_with_histogram(repetitions, result)
