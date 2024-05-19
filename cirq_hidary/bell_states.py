@@ -58,7 +58,26 @@ def bell_phi_plus(qreg: cirq.Qid,
     circ.append(cirq.CNOT(qreg[0], qreg[1]))
 
     # Display the circuit.
-    print("circuit:")
+    print("circuit for |\\phi+>:")
+    print(circ)
+
+def bell_psi_plus(qreg: cirq.Qid,
+                  circ: cirq.Circuit) -> None:
+    """
+    |Ψ+⟩ = (|01⟩ + |10⟩)/√2
+    0: ───H───────
+              │
+    1: ───X───@───
+              │
+    """
+    # Apply the Hadamard gate to the first qubit.
+    circ.append(cirq.H(qreg[0]))
+
+    # Apply the CNOT gate to the first and second qubits.
+    circ.append(cirq.CNOT(qreg[0], qreg[1]))
+
+    # Display the circuit.
+    print("circuit for |\\psi+>:")
     print(circ)
 
 
@@ -67,3 +86,4 @@ QREG = cirq.LineQubit.range(2)
 CIRC = cirq.Circuit()
 
 bell_phi_plus(QREG, CIRC.copy())
+bell_psi_plus(QREG, CIRC.copy())
