@@ -70,6 +70,9 @@ def bell_psi_plus(qreg: cirq.Qid,
     1: ───X───@───
               │
     """
+    # Apply the X pauli to the first qubit.
+    circ.append(cirq.X(qreg[0]))
+
     # Apply the Hadamard gate to the first qubit.
     circ.append(cirq.H(qreg[0]))
 
