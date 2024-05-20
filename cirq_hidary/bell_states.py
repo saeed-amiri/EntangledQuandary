@@ -56,6 +56,9 @@ which gives the third Bell state |Ψ+⟩.
 
 3- Start from state |10> and Using the Hadamard gate and the CNOT gate,
 which gives the fourth Bell state |Ψ-⟩.
+
+Also see the flloing link from qiskit:
+https://quantumcomputinguk.org/tutorials/introduction-to-bell-states
 """
 
 # pylint: disable=import-error
