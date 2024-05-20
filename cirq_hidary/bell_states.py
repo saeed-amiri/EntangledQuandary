@@ -53,6 +53,9 @@ X|1> = |0> and Z|0> = |0>
 
 2- Start from state |01> and Using the Hadamard gate and the CNOT gate,
 which gives the third Bell state |Ψ+⟩.
+
+3- Start from state |10> and Using the Hadamard gate and the CNOT gate,
+which gives the fourth Bell state |Ψ-⟩.
 """
 
 import cirq
@@ -90,7 +93,7 @@ def bell_psi_plus(qreg: cirq.Qid,
               │
     """
     # Apply the X pauli to the first qubit.
-    circ.append(cirq.X(qreg[0]))
+    circ.append(cirq.X(qreg[1]))
 
     # Apply the Hadamard gate to the first qubit.
     circ.append(cirq.H(qreg[0]))
