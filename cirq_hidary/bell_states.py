@@ -93,10 +93,9 @@ def bell_psi_plus(qreg: cirq.Qid,
     """
     The third Bell state
     |Ψ+⟩ = (|01⟩ + |10⟩)/√2
-    0: ───H───────
+    0: ───H───@───
               │
-    1: ───X───@───
-              │
+    1: ───X───X───
     """
     # Apply the X pauli to the first qubit.
     circ.append(cirq.X(qreg[1]))
@@ -121,9 +120,9 @@ def bell_phi_minus(qreg: cirq.Qid,
     """
     The second Bell state
     |Φ-⟩ = (|00⟩ - |11⟩)/√2
-    0: ───H───@───
-                 │
-    1: ───────X───
+    0: ───X───H───@───
+                  │
+    1: ───────────X───
     """
     # Apply the X pauli to the first qubit.
     circ.append(cirq.X(qreg[0]))
@@ -148,10 +147,10 @@ def bell_psi_minus(qreg: cirq.Qid,
     """
     The fourth Bell state
     |Ψ-⟩ = (|01⟩ - |10⟩)/√2
-    0: ───H───────
-                 │
-    1: ───X───@───
-                 │
+    0: ───H───Z───@───
+                  │
+    1: ───X───Z───X───
+                  │
     """
     # Apply the X pauli to the first qubit.
     circ.append(cirq.X(qreg[1]))
