@@ -76,6 +76,9 @@ def bell_phi_plus(qreg: cirq.Qid,
     print("circuit for |\\phi+>:")
     print(circ)
 
+    message(circ, qreg)
+    print(simulate(circ, 10), end='\n\n')
+
 
 def bell_psi_plus(qreg: cirq.Qid,
                   circ: cirq.Circuit) -> None:
@@ -99,6 +102,9 @@ def bell_psi_plus(qreg: cirq.Qid,
     print("circuit for |\\psi+>:")
     print(circ)
 
+    message(circ, qreg)
+    print(simulate(circ, 10), end='\n\n')
+
 
 def message(circ: cirq.Circuit,
             qreg: cirq.Qid,
@@ -121,7 +127,5 @@ CIRC = cirq.Circuit()
 
 
 bell_phi_plus(QREG, CIRC.copy())
-message(CIRC, QREG)
-print(simulate(CIRC))
 
 bell_psi_plus(QREG, CIRC.copy())
