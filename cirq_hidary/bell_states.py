@@ -38,6 +38,21 @@ The circuit for |Φ-⟩ calculates by applying the Pauli-Z gate to  |Φ+⟩.
 The circuit for |Ψ-⟩ calculates by applying the Pauli-Z gate to  |Ψ+⟩.
 |Φ-⟩ = (|00⟩ - |11⟩)/√2
 |Ψ-⟩ = (|01⟩ - |10⟩)/√2
+
+There are many ways to prepare the Bell states:
+1- Start from state |00> and Using the Hadamard gate and the CNOT gate,
+which gives the first Bell state |Φ+⟩.
+If we apply the X_2 gate to |Φ+⟩, we get the second Bell state |Φ-⟩:
+X_2|Φ+⟩ = (I ⊗ X) (|00⟩ + |11⟩)/√2
+            -> |00⟩ - |11⟩  = |Φ-⟩
+The third and fourth Bell states |Ψ+⟩ and |Ψ-⟩ are prepared by applying
+X_2 Z_2 |Φ+⟩ and X_2 Z_2 |Φ-⟩, respectively.
+Note that X_2 = X ⊗ I and Z_2 = I ⊗ Z.
+X|0> = |1> and Z|1> = -|1>
+X|1> = |0> and Z|0> = |0>
+
+2- Start from state |01> and Using the Hadamard gate and the CNOT gate,
+which gives the third Bell state |Ψ+⟩.
 """
 
 import cirq
