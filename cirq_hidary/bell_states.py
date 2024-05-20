@@ -76,6 +76,7 @@ def bell_phi_plus(qreg: cirq.Qid,
     print("circuit for |\\phi+>:")
     print(circ)
 
+
 def bell_psi_plus(qreg: cirq.Qid,
                   circ: cirq.Circuit) -> None:
     """
@@ -99,9 +100,28 @@ def bell_psi_plus(qreg: cirq.Qid,
     print(circ)
 
 
+def message(circ: cirq.Circuit,
+            qreg: cirq.Qid,
+            key: str = 'z'
+            ) -> None:
+    """ measure the qubits """
+    return circ.append(cirq.measure(*qreg, key=key))
+
+
+def simulate(circ: cirq.Circuit,
+             repetitions: int = 10
+             ) -> cirq.Result:
+    """ simulate the circuit """
+    return cirq.Simulator().run(circ, repetitions=repetitions)
+
+
 # Create a quantum circuit.
 QREG = cirq.LineQubit.range(2)
 CIRC = cirq.Circuit()
 
+
 bell_phi_plus(QREG, CIRC.copy())
+message(CIRC, QREG)
+print(simulate(CIRC))
+
 bell_psi_plus(QREG, CIRC.copy())
