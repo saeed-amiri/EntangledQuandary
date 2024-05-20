@@ -139,6 +139,38 @@ def bell_phi_minus(qreg: cirq.Qid,
     print(simulate(circ, 10), end='\n\n')
 
 
+def bell_psi_minus(qreg: cirq.Qid,
+                   circ: cirq.Circuit
+                   ) -> None:
+    """
+    The fourth Bell state
+    |Ψ-⟩ = (|01⟩ - |10⟩)/√2
+    0: ───H───────
+                 │
+    1: ───X───@───
+                 │
+    """
+    # Apply the X pauli to the first qubit.
+    circ.append(cirq.X(qreg[1]))
+
+    # Apply the Hadamard gate to the first qubit.
+    circ.append(cirq.H(qreg[0]))
+
+    # Apply the Z pauli to the first and second qubits.
+    circ.append(cirq.Z(qreg[0]))
+    circ.append(cirq.Z(qreg[1]))
+
+    # Apply the CNOT gate to the first and second qubits.
+    circ.append(cirq.CNOT(qreg[0], qreg[1]))
+
+    # Display the circuit.
+    print("circuit for |\\psi->:")
+    print(circ)
+
+    message(circ, qreg)
+    print(simulate(circ, 10), end='\n\n')
+
+
 def message(circ: cirq.Circuit,
             qreg: cirq.Qid,
             key: str = 'z'
@@ -164,3 +196,5 @@ bell_phi_plus(QREG, CIRC.copy())
 bell_psi_plus(QREG, CIRC.copy())
 
 bell_phi_minus(QREG, CIRC.copy())
+
+bell_psi_minus(QREG, CIRC.copy())
