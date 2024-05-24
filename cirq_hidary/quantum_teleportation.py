@@ -32,8 +32,18 @@ import random
 import cirq
 
 
-def make_quantum_teleportation_circuit(ran_x, ran_y):
-    """Make a quantum teleportation circuit."""
+def make_quantum_teleportation_circuit(ran_x: float,
+                                       ran_y: float,
+                                       ) -> tuple[cirq.LineQubit, cirq.Circuit
+                                                  ]:
+    """Make a quantum teleportation circuit.
+    It will create sth like:
+    0: ───X^ran_x───Y^ran_y───H───────────@───H───M('msg')───────@───
+                                          │       │              │
+    1: ───H──────────@────────M('bell')───X───────M──────────@───┼───
+                     │        │                              │   │
+    2: ──────────────X────────M──────────────────────────────X───@───
+    """
     # Create a circuit with three qubits: one qubit to teleport, and two
     # qubits for the Bell pair.
     circuit = cirq.Circuit()
@@ -44,6 +54,8 @@ def make_quantum_teleportation_circuit(ran_x, ran_y):
     circuit.append(cirq.measure(alice, bob, key='bell'))
 
     # Prepare the qubit to teleport.
+    # Create a random initial state for the msg qubit, which is then
+    # teleported to another qubit:
     circuit.append([cirq.X(msg)**ran_x, cirq.Y(msg)**ran_y])
     circuit.append(cirq.H(msg))
     circuit.append(cirq.CNOT(msg, alice))
