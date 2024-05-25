@@ -26,6 +26,7 @@ The quantum teleportation protocol is a fundamental building block for
 quantum communication and quantum computing.
 
 """
+# pylint: disable=import-error
 
 import random
 
@@ -80,6 +81,13 @@ def main():
     # Display the circuit.
     print("circuit for quantum teleportation:")
     print(circuit)
+
+    # Simulate the circuit.
+    sim = cirq.Simulator()
+    message = sim.simulate(cirq.Circuit(
+        [cirq.X(msg)**ran_x, cirq.Y(msg)**ran_y]))
+
+    print(message)
 
 
 if __name__ == '__main__':
