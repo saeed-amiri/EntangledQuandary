@@ -89,6 +89,14 @@ def main():
 
     print(message)
 
+    print("Bloch Sphere of Alice`s qubit:")
+    b0_x, b0_y, b0_z = cirq.bloch_vector_from_state_vector(
+        message.final_state_vector, 0
+    )
+    print(f"x: {round(b0_x, 4):.3f}, "
+          f"y: {round(b0_y, 4):.3f}, "
+          f"z: {round(b0_z, 4):.3f}")
+
 
 if __name__ == '__main__':
     main()
