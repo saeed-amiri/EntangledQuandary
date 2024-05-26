@@ -39,11 +39,12 @@ def make_quantum_teleportation_circuit(ran_x: float,
                                                   ]:
     """Make a quantum teleportation circuit.
     It will create sth like:
-    0: ───X^ran_x───Y^ran_y───H───────────@───H───M('msg')───────@───
-                                          │       │              │
-    1: ───H──────────@────────M('bell')───X───────M──────────@───┼───
-                     │        │                              │   │
-    2: ──────────────X────────M──────────────────────────────X───@───
+    qubit 0 is the message qubit: |ψ⟩ = X^ran_x Y^ran_y |0⟩
+    0: ───X^ran_x───Y^ran_y───@───H───M───────@───
+                              │       │       │
+    1: ───H────────@──────────X───────M───@───┼───
+                   │                      │   │
+    2: ────────────X──────────────────────X───@───
     """
     # Create a circuit with three qubits: one qubit to teleport, and two
     # qubits for the Bell pair.
