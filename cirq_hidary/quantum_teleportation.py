@@ -52,18 +52,17 @@ def make_quantum_teleportation_circuit(ran_x: float,
 
     # Create a Bell pair between Alice and Bob.
     circuit.append([cirq.H(alice), cirq.CNOT(alice, bob)])
-    circuit.append(cirq.measure(alice, bob, key='bell'))
 
-    # Prepare the qubit to teleport.
     # Create a random initial state for the msg qubit, which is then
     # teleported to another qubit:
     circuit.append([cirq.X(msg)**ran_x, cirq.Y(msg)**ran_y])
-    circuit.append(cirq.H(msg))
-    circuit.append(cirq.CNOT(msg, alice))
-    circuit.append(cirq.H(msg))
-    circuit.append(cirq.measure(msg, alice, key='msg'))
 
-    # Apply the correction operations.
+    # Bell measurement of the Message and Alice's entangled qubit
+    circuit.append([cirq.CNOT(msg, alice), cirq.H(msg)])
+    circuit.append(cirq.measure(msg, alice))
+
+    # Uses the two classical bits from the bell measurement to recover
+    # the original quantum message on Bob's entangled qubit
     circuit.append([cirq.CNOT(alice, bob), cirq.CZ(msg, bob)])
 
     # Return the message and the circuit.
