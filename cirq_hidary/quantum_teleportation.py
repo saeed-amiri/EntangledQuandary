@@ -92,9 +92,21 @@ def main():
     b0_x, b0_y, b0_z = cirq.bloch_vector_from_state_vector(
         message.final_state_vector, 0
     )
-    print(f"x: {round(b0_x, 4):.3f}, "
-          f"y: {round(b0_y, 4):.3f}, "
-          f"z: {round(b0_z, 4):.3f}")
+    print("x:", round(b0_x, 4),
+          "y:", round(b0_y, 4),
+          "z:", round(b0_z, 4))
+
+    # record the final state of the simulation
+    final_results = sim.simulate(circuit)
+
+    # Print the Bloch sphere of Bob`s qubit
+    print("Bloch Sphere of Bob`s qubit:")
+    b2_x, b2_y, b2_z = cirq.bloch_vector_from_state_vector(
+        final_results.final_state_vector, 2
+    )
+    print("x:", round(b2_x, 4),
+          "y:", round(b2_y, 4),
+          "z:", round(b2_z, 4))
 
 
 if __name__ == '__main__':
