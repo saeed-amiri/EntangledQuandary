@@ -26,3 +26,37 @@ The superdense coding protocol consists of the following steps:
     8- Bob measures his qubit.
     9- Bob now has two classical bits of information.
 """
+# pylint: disable=import-error
+
+
+import cirq
+
+
+# Helper function for visulization output
+def bit_string(bits):
+    """visulaization of the ouput"""
+    return ''.join('1' if e else '0' for e in bits)
+
+
+# Create two quantum and classical regesters
+qreg = [cirq.LineQubit(x) for x in range(2)]
+circ = cirq.Circuit()
+
+# Dictionary of operations for each message
+messages = {'00': [],
+            '01': [cirq.X(qreg[0])],
+            '10': [cirq.Z(qreg[0])],
+            '11': [cirq.X(qreg[0]), cirq.Z(qreg[0])]}
+
+# Alice creates a Bell pair
+circ.append(cirq.H(qreg[0]))
+circ.append(cirq.CNOT(qreg[0], qreg[1]))
+
+# Alice picks a message to send
+MESG = '01'
+print(f"Alice's message = {MESG}")
+
+# Alice encodes her message with the appropiate quantum operations
+circ.append(messages[MESG])
+
+print(f'Circuit is:\n {circ}')
