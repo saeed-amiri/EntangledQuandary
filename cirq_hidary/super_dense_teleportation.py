@@ -13,7 +13,7 @@ Bob now has the message that Alice wanted to send him.
 The superdense coding protocol is a way to send two classical bits of
 information using only one qubit.
 The superdense coding protocol consists of the following steps:
-    1- Alice preppares an EPR pair., which is a Bell pair of qubits.
+    1- Alice preppares an EPR pair, which is a Bell pair of qubits.
     2- For this, Alice applies a Hadamard gate to her qubit, and then a
         CNOT gate with her qubit as the control and Bob's qubit as the
         target.
@@ -55,8 +55,19 @@ circ.append(cirq.CNOT(qreg[0], qreg[1]))
 # Alice picks a message to send
 MESG = '01'
 print(f"Alice's message = {MESG}")
+print(f'Circuit is:\n {circ}')
 
 # Alice encodes her message with the appropiate quantum operations
 circ.append(messages[MESG])
 
-print(f'Circuit is:\n {circ}')
+# Bob meseares in Bell basis
+circ.append(cirq.CNOT(qreg[0], qreg[1]))
+circ.append(cirq.H(qreg[0]))
+circ.append([cirq.measure(qreg[0]), cirq.measure(qreg[1])])
+
+print(f"\nCircuit after measured by Bob:\n{circ}")
+
+# Run the quantum circuit on a simulator backend
+sim =  cirq.Simulator()
+res = sim.run(circ, repetitions=1)
+print(f"\nBob's recived messages is: {bit_string(res.measurements.values())}")
