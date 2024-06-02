@@ -50,6 +50,10 @@ import numpy as np
 import cirq
 
 
+def bit_string(bits: list[int]) -> str:
+    """return bit in string fasion"""
+    return ''.join('1' if e else '_' for e  in bits)
+
 def make_bell_test_circuit() -> cirq.Circuit:
     """make a bell test circuit"""
     # Qubit for Alice, Bob, Refree
