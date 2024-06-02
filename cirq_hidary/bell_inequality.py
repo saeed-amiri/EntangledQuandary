@@ -23,6 +23,7 @@ Note: See the order of the states, first Alice, third Bob
     (1, 0): ───────X─────────────
 
     (1, 1): ───H─────────────────
+
 After players play sqrt(X):
     (0, 0): ───H───@───X^-0.25───X^0.5───
                    │             │
@@ -31,6 +32,16 @@ After players play sqrt(X):
     (1, 0): ───────X───X^0.5─────────────
                        │
     (1, 1): ───H───────@─────────────────
+
+After collecting the measurements:
+    (0, 0): ───H───@───X^-0.25───X^0.5────M('a')───
+                   │             │
+    (0, 1): ───H───┼─────────────@────────M('x')───
+                   │
+    (1, 0): ───────X───X^0.5─────M('b')────────────
+                       │
+    (1, 1): ───H───────@─────────M('y')────────────
+
 """
 # pylint: disable=import-error
 
@@ -39,7 +50,7 @@ import numpy as np
 import cirq
 
 
-def make_bell_test_circuit() -> None:
+def make_bell_test_circuit() -> cirq.Circuit:
     """make a bell test circuit"""
     # Qubit for Alice, Bob, Refree
     alice: "cirq.devices.grid_qubit.GridQubit" = cirq.GridQubit(0, 0)
@@ -71,6 +82,17 @@ def make_bell_test_circuit() -> None:
         cirq.CNOT(bob_refree, bob)**(0.5)
     ])
     print(f"After players play sqrt(X):\n{circuit}")
+
+    # The results are collected
+    circuit.append([
+        cirq.measure(alice, key='a'),
+        cirq.measure(bob, key='b'),
+        cirq.measure(alice_refree, key='x'),
+        cirq.measure(bob_refree, key='y')
+    ])
+    print(f"After collecting the measurements:\n{circuit}")
+
+    return circuit
 
 
 def main() -> None:
