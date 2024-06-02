@@ -14,6 +14,15 @@ First preapre a Bell state between Alice and Bob and apply and a control
     (0, 0): ───H───@───X^-0.25───
                    │
     (1, 0): ───────X─────────────
+After the refree flip a coin:
+Note: See the order of the states, first Alice, third Bob
+    (0, 0): ───H───@───X^-0.25───
+                   │
+    (0, 1): ───H───┼─────────────
+                   │
+    (1, 0): ───────X─────────────
+
+    (1, 1): ───H─────────────────
 """
 # pylint: disable=import-error
 
@@ -39,7 +48,14 @@ def make_bell_test_circuit() -> None:
         cirq.CNOT(alice, bob),
         cirq.X(alice)**(-1/4.0)
         ])
-    print(circuit)
+    print(f'\nIntitial circuit is:\n{circuit}')
+
+    # Refrees flip coins
+    circuit.append([
+        cirq.H(alice_refree),
+        cirq.H(bob_refree)
+    ])
+    print(f'\nAfter refrees flip coins, circuit is:\n{circuit}')
 
 
 def main() -> None:
