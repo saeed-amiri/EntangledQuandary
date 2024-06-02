@@ -30,9 +30,9 @@ There is a typo in Haidry's book, the correct circuit for the superdense
 Here are the table of the Intended and the applied operations:
     | Message | Intended operations | Applied operations |
     |---------|----------------------|--------------------|
-    | 00      | I                    | I:   |00> + |11>|  |
-    | 01      | Z                    | Z:   |00> - |11>|  |
-    | 10      | X                    | X:   |01> + |10>|  |
+    | 00      | I                    | I:   |00> + |11>   |
+    | 01      | Z                    | Z:   |00> - |11>   |
+    | 10      | X                    | X:   |01> + |10>   |
     | 11      | XZ                   | ZX: -|01> + |10>   |
 """
 # pylint: disable=import-error
