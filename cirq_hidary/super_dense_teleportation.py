@@ -50,40 +50,57 @@ def alice_message_perepration(circ_i: cirq.Circuit,
     circ_i.append(cirq.CNOT(qreg_i[0], qreg_i[1]))
 
     print(f"Alice's message = {mesg}")
-    print(f'Circuit is:\n {circ}')
+    print(f'Circuit is:\n {circ_i}')
 
     # Alice encodes her message with the appropiate quantum operations
     circ_i.append(messages[mesg])
     return circ_i
 
 
-# Create two quantum and classical regesters
-qreg = [cirq.LineQubit(x) for x in range(2)]
-circ = cirq.Circuit()
+def bob_message_measurement(circ_i: cirq.Circuit,
+                            qreg_i: list[cirq.LineQubit],
+                            ) -> cirq.Circuit:
+    """Bob measures the message sent by Alice"""
+    # Bob measures in Bell basis
+    circ_i.append(cirq.CNOT(qreg_i[0], qreg_i[1]))
+    circ_i.append(cirq.H(qreg_i[0]))
+    circ_i.append([cirq.measure(qreg_i[0]), cirq.measure(qreg_i[1])])
 
-# Dictionary of operations for each message
-messages: dict[
-    str,
-    list["cirq.ops.pauli_string.SingleQubitPauliStringGateOperation"]] = \
-        {'00': [],
-         '01': [cirq.X(qreg[0])],
-         '10': [cirq.Z(qreg[0])],
-         '11': [cirq.X(qreg[0]), cirq.Z(qreg[0])]}
+    return circ_i
 
-# Alice picks a message to send
-MESG = '01'
 
-circ = alice_message_perepration(circ, qreg, MESG, all_messages)
+# Main code
+def main() -> None:
+    """Main function"""
+    # Create two quantum and classical regesters
+    qreg = [cirq.LineQubit(x) for x in range(2)]
+    circ = cirq.Circuit()
 
-# Bob meseares in Bell basis
-circ.append(cirq.CNOT(qreg[0], qreg[1]))
-circ.append(cirq.H(qreg[0]))
-circ.append([cirq.measure(qreg[0]), cirq.measure(qreg[1])])
+    # Dictionary of operations for each message
+    all_messages: dict[
+        str,
+        list["cirq.ops.pauli_string.SingleQubitPauliStringGateOperation"]] = \
+            {'00': [],
+             '01': [cirq.X(qreg[0])],
+             '10': [cirq.Z(qreg[0])],
+             '11': [cirq.X(qreg[0]), cirq.Z(qreg[0])]}
 
-print(f"\nCircuit after measured by Bob:\n{circ}")
+    # Alice picks a message to send
+    MESG = '01'
 
-# Run the quantum circuit on a simulator backend
-sim = cirq.Simulator()
-res = sim.run(circ, repetitions=1)
-print("\nBob's recived messages is: "
-      f"|{bit_string(res.measurements.values())}>")
+    circ = alice_message_perepration(circ, qreg, MESG, all_messages)
+
+    # Bob meseares in Bell basis
+    circ = bob_message_measurement(circ, qreg)
+
+    print(f"\nCircuit after measured by Bob:\n{circ}")
+
+    # Run the quantum circuit on a simulator backend
+    sim = cirq.Simulator()
+    res = sim.run(circ, repetitions=1)
+    print("\nBob's recived messages is: "
+          f"|{bit_string(res.measurements.values())}>")
+
+
+if __name__ == '__main__':
+    main()
