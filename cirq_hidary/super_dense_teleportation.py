@@ -50,7 +50,7 @@ def alice_message_perepration(circ_i: cirq.Circuit,
     circ_i.append(cirq.CNOT(qreg_i[0], qreg_i[1]))
 
     print(f"Alice's message = {mesg}")
-    print(f'Circuit is:\n {circ_i}')
+    print(f'Circuit is:\n{circ_i}')
 
     # Alice encodes her message with the appropiate quantum operations
     circ_i.append(messages[mesg])
@@ -69,7 +69,6 @@ def bob_message_measurement(circ_i: cirq.Circuit,
     return circ_i
 
 
-# Main code
 def main() -> None:
     """Main function"""
     # Create two quantum and classical regesters
@@ -81,8 +80,8 @@ def main() -> None:
         str,
         list["cirq.ops.pauli_string.SingleQubitPauliStringGateOperation"]] = \
             {'00': [],
-             '01': [cirq.X(qreg[0])],
-             '10': [cirq.Z(qreg[0])],
+             '01': [cirq.Z(qreg[0])],
+             '10': [cirq.X(qreg[0])],
              '11': [cirq.X(qreg[0]), cirq.Z(qreg[0])]}
 
     # Alice picks a message to send
@@ -98,8 +97,9 @@ def main() -> None:
     # Run the quantum circuit on a simulator backend
     sim = cirq.Simulator()
     res = sim.run(circ, repetitions=1)
-    print("\nBob's recived messages is: "
-          f"|{bit_string(res.measurements.values())}>")
+    bob_msg_measured: str = bit_string(res.measurements.values())
+    print(f"\nBob's recived messages is: |{bob_msg_measured}>")
+    assert bob_msg_measured == MESG, "Bob received the wrong message"
 
 
 if __name__ == '__main__':
