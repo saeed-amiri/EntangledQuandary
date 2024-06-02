@@ -38,6 +38,23 @@ def bit_string(bits: list[int]) -> str:
     return ''.join('1' if e else '0' for e in bits)
 
 
+def alice_message_perepration(circ_i: cirq.Circuit,
+                              mesg: str
+                              ) -> cirq.Circuit:
+    """Alice prepares the message to send to Bob"""
+
+    # Alice creates a Bell pair
+    circ_i.append(cirq.H(qreg[0]))
+    circ_i.append(cirq.CNOT(qreg[0], qreg[1]))
+
+    print(f"Alice's message = {mesg}")
+    print(f'Circuit is:\n {circ}')
+
+    # Alice encodes her message with the appropiate quantum operations
+    circ_i.append(messages[mesg])
+    return circ_i
+
+
 # Create two quantum and classical regesters
 qreg = [cirq.LineQubit(x) for x in range(2)]
 circ = cirq.Circuit()
@@ -53,11 +70,8 @@ messages: dict[
 
 # Alice picks a message to send
 MESG = '01'
-print(f"Alice's message = {MESG}")
-print(f'Circuit is:\n {circ}')
 
-# Alice encodes her message with the appropiate quantum operations
-circ.append(messages[MESG])
+circ = alice_message_perepration(circ, MESG)
 
 # Bob meseares in Bell basis
 circ.append(cirq.CNOT(qreg[0], qreg[1]))
@@ -67,6 +81,7 @@ circ.append([cirq.measure(qreg[0]), cirq.measure(qreg[1])])
 print(f"\nCircuit after measured by Bob:\n{circ}")
 
 # Run the quantum circuit on a simulator backend
-sim =  cirq.Simulator()
+sim = cirq.Simulator()
 res = sim.run(circ, repetitions=1)
-print(f"\nBob's recived messages is: {bit_string(res.measurements.values())}")
+print("\nBob's recived messages is: "
+      f"|{bit_string(res.measurements.values())}>")
