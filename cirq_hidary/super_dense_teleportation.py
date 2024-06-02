@@ -88,7 +88,7 @@ def main() -> None:
     all_messages: dict[
         str,
         list["cirq.ops.pauli_string.SingleQubitPauliStringGateOperation"]] = \
-        {'00': [],
+        {'00': [cirq.I(qreg[0])],
          '01': [cirq.Z(qreg[0])],
          '10': [cirq.X(qreg[0])],
          '11': [cirq.X(qreg[0]), cirq.Z(qreg[0])]}
