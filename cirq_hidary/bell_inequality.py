@@ -23,6 +23,14 @@ Note: See the order of the states, first Alice, third Bob
     (1, 0): ───────X─────────────
 
     (1, 1): ───H─────────────────
+After players play sqrt(X):
+    (0, 0): ───H───@───X^-0.25───X^0.5───
+                   │             │
+    (0, 1): ───H───┼─────────────@───────
+                   │
+    (1, 0): ───────X───X^0.5─────────────
+                       │
+    (1, 1): ───H───────@─────────────────
 """
 # pylint: disable=import-error
 
@@ -46,7 +54,7 @@ def make_bell_test_circuit() -> None:
     circuit.append([
         cirq.H(alice),
         cirq.CNOT(alice, bob),
-        cirq.X(alice)**(-1/4.0)
+        cirq.X(alice)**(-0.25)
         ])
     print(f'\nIntitial circuit is:\n{circuit}')
 
@@ -56,6 +64,13 @@ def make_bell_test_circuit() -> None:
         cirq.H(bob_refree)
     ])
     print(f'\nAfter refrees flip coins, circuit is:\n{circuit}')
+
+    # Players do a sqrt(X) based on their referee's coin
+    circuit.append([
+        cirq.CNOT(alice_refree, alice)**(0.5),
+        cirq.CNOT(bob_refree, bob)**(0.5)
+    ])
+    print(f"After players play sqrt(X):\n{circuit}")
 
 
 def main() -> None:
