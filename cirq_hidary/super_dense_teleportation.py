@@ -39,13 +39,15 @@ def bit_string(bits: list[int]) -> str:
 
 
 def alice_message_perepration(circ_i: cirq.Circuit,
-                              mesg: str
+                              qreg_i: list[cirq.LineQubit],
+                              mesg: str,
+                              messages: dict[str,list]
                               ) -> cirq.Circuit:
     """Alice prepares the message to send to Bob"""
 
     # Alice creates a Bell pair
-    circ_i.append(cirq.H(qreg[0]))
-    circ_i.append(cirq.CNOT(qreg[0], qreg[1]))
+    circ_i.append(cirq.H(qreg_i[0]))
+    circ_i.append(cirq.CNOT(qreg_i[0], qreg_i[1]))
 
     print(f"Alice's message = {mesg}")
     print(f'Circuit is:\n {circ}')
@@ -71,7 +73,7 @@ messages: dict[
 # Alice picks a message to send
 MESG = '01'
 
-circ = alice_message_perepration(circ, MESG)
+circ = alice_message_perepration(circ, qreg, MESG, all_messages)
 
 # Bob meseares in Bell basis
 circ.append(cirq.CNOT(qreg[0], qreg[1]))
