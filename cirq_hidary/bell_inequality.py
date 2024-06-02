@@ -52,7 +52,8 @@ import cirq
 
 def bit_string(bits: list[int]) -> str:
     """return bit in string fasion"""
-    return ''.join('1' if e else '_' for e  in bits)
+    return ''.join('1' if e else '_' for e in bits)
+
 
 def make_bell_test_circuit() -> cirq.Circuit:
     """make a bell test circuit"""
@@ -85,16 +86,16 @@ def make_bell_test_circuit() -> cirq.Circuit:
         cirq.CNOT(alice_refree, alice)**(0.5),
         cirq.CNOT(bob_refree, bob)**(0.5)
     ])
-    print(f"After players play sqrt(X):\n{circuit}")
+    print(f"\nAfter players play sqrt(X):\n{circuit}")
 
-    # The results are collected
+    # The results are recorded
     circuit.append([
         cirq.measure(alice, key='a'),
         cirq.measure(bob, key='b'),
         cirq.measure(alice_refree, key='x'),
         cirq.measure(bob_refree, key='y')
     ])
-    print(f"After collecting the measurements:\n{circuit}")
+    print(f"\nAfter collecting the measurements:\n{circuit}")
 
     return circuit
 
@@ -104,6 +105,34 @@ def main() -> None:
     # Create a circuit
     circuit = make_bell_test_circuit()
 
+    # Run the simulations
+    repetitions = 1000
+    print(f"\nSimulating {repetitions} repetitions...\n")
+    result: "cirq.study.result.ResultDict" = \
+        cirq.Simulator().run(program=circuit, repetitions=repetitions)
+
+    # Collect results
+    a_result: np.ndarray = np.array(result.measurements['a'][:, 0])
+    b_result: np.ndarray = np.array(result.measurements['b'][:, 0])
+    x_result: np.ndarray = np.array(result.measurements['x'][:, 0])
+    y_result: np.ndarray = np.array(result.measurements['y'][:, 0])
+
+    # Compute the winning percentage
+    outcomes = a_result ^ b_result == x_result & y_result
+    win_precentage: float = len([e for e in outcomes if e]) * 100 / repetitions
+
+    if SHOW_ARRAYS:
+        print("\nResults are:"
+              f"Alice: {bit_string(a_result)}"
+              f"Bob: {bit_string(b_result)}"
+              f"Alice_Refree: {bit_string(x_result)}"
+              f"Bob_refree: {bit_string(y_result)}"
+              )
+        print(f"(Alice XOR Bob) == (x AND y)\n{bit_string(outcomes)}")
+
+    print(f"Win rate: {win_precentage}")
+
 
 if __name__ == '__main__':
+    SHOW_ARRAYS: bool = False
     main()
