@@ -33,7 +33,7 @@ import cirq
 
 
 # Helper function for visulization output
-def bit_string(bits):
+def bit_string(bits: list[int]) -> str:
     """visulaization of the ouput"""
     return ''.join('1' if e else '0' for e in bits)
 
@@ -43,14 +43,13 @@ qreg = [cirq.LineQubit(x) for x in range(2)]
 circ = cirq.Circuit()
 
 # Dictionary of operations for each message
-messages = {'00': [],
-            '01': [cirq.X(qreg[0])],
-            '10': [cirq.Z(qreg[0])],
-            '11': [cirq.X(qreg[0]), cirq.Z(qreg[0])]}
-
-# Alice creates a Bell pair
-circ.append(cirq.H(qreg[0]))
-circ.append(cirq.CNOT(qreg[0], qreg[1]))
+messages: dict[
+    str,
+    list["cirq.ops.pauli_string.SingleQubitPauliStringGateOperation"]] = \
+        {'00': [],
+         '01': [cirq.X(qreg[0])],
+         '10': [cirq.Z(qreg[0])],
+         '11': [cirq.X(qreg[0]), cirq.Z(qreg[0])]}
 
 # Alice picks a message to send
 MESG = '01'
