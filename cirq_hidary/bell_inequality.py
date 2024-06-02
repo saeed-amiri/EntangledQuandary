@@ -9,6 +9,11 @@ Here is the main idea:
         if a(x) XOR b(y) == xy they win
         else they lose(
 In quantum version of the game, Alice and Bob can set a strategy to win
+First preapre a Bell state between Alice and Bob and apply and a control
+-sqrt(X), the circuit will be:
+    (0, 0): ───H───@───X^-0.25───
+                   │
+    (1, 0): ───────X─────────────
 """
 # pylint: disable=import-error
 
@@ -28,8 +33,17 @@ def make_bell_test_circuit() -> None:
 
     circuit: "cirq.circuits.circuit.Circuit" = cirq.Circuit()
 
+    # Prepare shared entangeld state between Alice and Bob
+    circuit.append([
+        cirq.H(alice),
+        cirq.CNOT(alice, bob),
+        cirq.X(alice)**(-1/4.0)
+        ])
+    print(circuit)
+
 
 def main() -> None:
+    """Bell inequalty"""
     # Create a circuit
     circuit = make_bell_test_circuit()
 
