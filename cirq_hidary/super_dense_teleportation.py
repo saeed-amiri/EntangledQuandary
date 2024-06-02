@@ -50,7 +50,7 @@ def bit_string(bits: list[int]) -> str:
 def alice_message_perepration(circ_i: cirq.Circuit,
                               qreg_i: list[cirq.LineQubit],
                               mesg: str,
-                              messages: dict[str,list]
+                              messages: dict[str, list]
                               ) -> cirq.Circuit:
     """Alice prepares the message to send to Bob"""
 
@@ -88,10 +88,10 @@ def main() -> None:
     all_messages: dict[
         str,
         list["cirq.ops.pauli_string.SingleQubitPauliStringGateOperation"]] = \
-            {'00': [],
-             '01': [cirq.Z(qreg[0])],
-             '10': [cirq.X(qreg[0])],
-             '11': [cirq.X(qreg[0]), cirq.Z(qreg[0])]}
+        {'00': [],
+         '01': [cirq.Z(qreg[0])],
+         '10': [cirq.X(qreg[0])],
+         '11': [cirq.X(qreg[0]), cirq.Z(qreg[0])]}
 
     # Alice picks a message to send
     MESG = '01'
