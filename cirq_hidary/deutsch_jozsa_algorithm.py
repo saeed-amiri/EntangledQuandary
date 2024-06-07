@@ -37,7 +37,7 @@ Steps of DJA:
         of the state based on the value of the function: Orcale function
         In quantum computing the an orcale is a black box that used to
         encode a function to a quantum state:
-        THe orcale functiooperates on a two registers (set of qubits):
+        The orcale function operates on a two registers (set of qubits):
             - The first register (n qubits), the input x 
             - The second register (a single qubit), the output f(x)
             U_f|x>|y> = |x>|y XOR f(x)>
