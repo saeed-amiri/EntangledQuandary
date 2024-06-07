@@ -1,7 +1,7 @@
 """
 Deutsch-Jozsa Algorithm
 
-Deutsch-Jozsa algorithm is a quantum algorithm that solves the
+Deutsch-Jozsa algorithm  (DJA) is a quantum algorithm that solves the
 Deutsch-Jozsa problem.
 "The problem is to determine whether a given function is constant or
 balanced. A constant function is a function that returns the same value
@@ -22,6 +22,33 @@ There are exactly four one-input, one-output Boolean functions:
 x   f_0  f_1   f_x   f_x_not
 0   0    1     0     1
 1   0    1     1     0
+____________________________
+Recap:
+Problem: Determine if a given function is constant or balanced.
+Classical solution: Requires 2^(n-1) + 1 evaluations.
+Quantum solution (DJA): Requires only one evaluation.
+
+Steps of DJA:
+    1. Start with n qubits intialized to |0> and an auxiliary qubit |1>.
+    2. Apply Hadamard gate to all qubits and the auxiliary qubit:
+        H|0> = (|0> + |1>) / sqrt(2) = |+>
+        H|1> = (|0> - |1>) / sqrt(2) = |->
+    3. Apply the Orcle (function). Which flips the sign of the amplitude
+        of the state based on the value of the function: Orcale function
+        In quantum computing the an orcale is a black box that used to
+        encode a function to a quantum state:
+        THe orcale functiooperates on a two registers (set of qubits):
+            - The first register (n qubits), the input x 
+            - The second register (a single qubit), the output f(x)
+            U_f|x>|y> = |x>|y XOR f(x)>
+        Ruule of the oracle:
+        U_f|x>|+> = (-1)^f(x)|x>|+>                       
+        which means that the oracle flips the sign of the amplitude of
+        the state based on the value of the function.
+        This flipping the sign of the amplitude is the key to determining
+        the nature of the function.
+    4. Apply Hadamard gate to the first n qubits.The measurment indicates
+        whether the function is constant or balanced.    
 """
 
 import cirq
