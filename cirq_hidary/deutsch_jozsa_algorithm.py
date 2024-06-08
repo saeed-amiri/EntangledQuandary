@@ -33,22 +33,28 @@ Steps of DJA:
     2. Apply Hadamard gate to all qubits and the auxiliary qubit:
         H|0> = (|0> + |1>) / sqrt(2) = |+>
         H|1> = (|0> - |1>) / sqrt(2) = |->
+        Applying H gate to n qubits:
+        (1/sqrt(2)^n) * sum_{x=0}^{2^n-1} |x> (*) (1/sqrt(2))(|0> - |1>)
+        for n = 1:
+            |x> = |0> and |1>
+        for n = 2:
+            |x> = |00>, |01>, |10>, |11>
     3. Apply the Orcle (function). Which flips the sign of the amplitude
         of the state based on the value of the function: Orcale function
         In quantum computing the an orcale is a black box that used to
         encode a function to a quantum state:
         The orcale function operates on a two registers (set of qubits):
-            - The first register (n qubits), the input x 
+            - The first register (n qubits), the input x
             - The second register (a single qubit), the output f(x)
             U_f|x>|y> = |x>|y XOR f(x)>
         Ruule of the oracle:
-        U_f|x>|+> = (-1)^f(x)|x>|+>                       
+        U_f|x>|+> = (-1)^f(x)|x>|+>
         which means that the oracle flips the sign of the amplitude of
         the state based on the value of the function.
         This flipping the sign of the amplitude is the key to determining
         the nature of the function.
     4. Apply Hadamard gate to the first n qubits.The measurment indicates
-        whether the function is constant or balanced.    
+        whether the function is constant or balanced.
 """
 
 import cirq
