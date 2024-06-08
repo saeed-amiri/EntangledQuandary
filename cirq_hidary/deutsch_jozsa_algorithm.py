@@ -29,12 +29,15 @@ Classical solution: Requires 2^(n-1) + 1 evaluations.
 Quantum solution (DJA): Requires only one evaluation.
 
 Steps of DJA:
-    1. Start with n qubits intialized to |0> and an auxiliary qubit |1>.
+    1. Start with n qubits intialized to |0> and an auxiliary qubit |1>:
+        |0>^{(*)n}|1>
     2. Apply Hadamard gate to all qubits and the auxiliary qubit:
         H|0> = (|0> + |1>) / sqrt(2) = |+>
         H|1> = (|0> - |1>) / sqrt(2) = |->
+        In general, applying H gate to a qubit:
+            H^{(*)n} |x> = (1/sqrt(2)^n) * sum_{z=0}^{2^n-1} |z>
         Applying H gate to n qubits:
-        (1/sqrt(2)^n) * sum_{x=0}^{2^n-1} |x> (*) (1/sqrt(2))(|0> - |1>)
+            (1/sqrt(2)^n) * sum_{x=0}^{2^n-1} |x> (*) (1/sqrt(2))(|0> - |1>)
         for n = 1:
             |x> = |0> and |1>
         for n = 2:
@@ -47,14 +50,22 @@ Steps of DJA:
             - The first register (n qubits), the input x
             - The second register (a single qubit), the output f(x)
             U_f|x>|y> = |x>|y XOR f(x)>
-        Ruule of the oracle:
+        Rule of the oracle:
         U_f|x>|+> = (-1)^f(x)|x>|+>
         which means that the oracle flips the sign of the amplitude of
         the state based on the value of the function.
         This flipping the sign of the amplitude is the key to determining
-        the nature of the function.
+        the nature of the function:
+        (1/sqrt(2)^n) * sum_{x=0}^{2^n-1}(-1)^(f(x))|x> \
+            (*) (1/sqrt(2))(|0> - |1>)
     4. Apply Hadamard gate to the first n qubits.The measurment indicates
-        whether the function is constant or balanced.
+        whether the function is constant or balanced:
+        (1/2^n) * sum_{z=0}^{2^n-1} (-1)^z * sum_{x=0}^{2^n-1} \
+            (-1)^{f(x) + x.z} |z>
+    5. Meassuring the first n qubits, if the result is |0>^n, then the
+        function is constant, otherwise it is balanced.
+        In quantum computing, measurement is the process of observing
+        the state of a qubit.
 """
 
 import cirq
