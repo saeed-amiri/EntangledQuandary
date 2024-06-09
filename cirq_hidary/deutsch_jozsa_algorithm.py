@@ -70,17 +70,61 @@ Steps of DJA:
         function is constant, otherwise it is balanced.
         In quantum computing, measurement is the process of observing
         the state of a qubit.
+
+The oracles items are:
+    Circuit for constant_0:
+        0: ───H───H───M───
+
+        1: ───X───H───────
+
+    Circuit for constant_1:
+        0: ───H───H───M───
+
+        1: ───X───H───X───
+
+    Circuit for balanced:
+        0: ───H───────@───H───M───
+              │
+        1: ───X───H───X───────────
+
+    Circuit for balanced_:
+        0: ───H───────@───H───M───
+              │
+        1: ───X───H───X───X───────
 """
+
+# pylint: disable=import-error
 
 import cirq
 
+
+def deutsch_josza_algorithm(oracle: cirq.Operation,
+                            q_0: cirq.LineQubit,
+                            q_1: cirq.LineQubit
+                            ) -> cirq.Circuit:
+    """
+    Yields a cicuit for DJA algorithm given by the operations
+    implementing the oracle function
+    """
+    yield cirq.X(q_1)
+    yield cirq.H(q_0), cirq.H(q_1)
+    yield oracle
+    yield cirq.H(q_0)
+    yield cirq.measure(q_0)
+
+
 # Get two qubits, a data qubit and target qubit, respectively
-q_0, q_1 = cirq.LineQubit.range(2)
+Q_0, Q_1 = cirq.LineQubit.range(2)
 
 # Dictionary of oracles
-oracle = {
+ORACLES: dict[str, cirq.Operation] = {
     'constant_0': [],
-    'constant_1': [cirq.X(q_1)],
-    'balanced': [cirq.CNOT(q_0, q_1)],
-    'balanced_': [cirq.CNOT(q_0, q_1), cirq.X(q_1)]
+    'constant_1': [cirq.X(Q_1)],
+    'balanced': [cirq.CNOT(Q_0, Q_1)],
+    'balanced_': [cirq.CNOT(Q_0, Q_1), cirq.X(Q_1)]
 }
+
+# Display each oracle in oracles.items():
+for KEY, ORACLE in ORACLES.items():
+    print(f'Circuit for {KEY}:')
+    print(cirq.Circuit(deutsch_josza_algorithm(ORACLE, Q_0, Q_1)), end='\n\n')
