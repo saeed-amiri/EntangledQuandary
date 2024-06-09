@@ -42,6 +42,10 @@ Steps of DJA:
             |x> = |0> and |1>
         for n = 2:
             |x> = |00>, |01>, |10>, |11>
+        This means:
+            - Each n-qubit state |x> is  equally probable
+            - The auxiliary qubit in |-> state is in balanced superposition
+            with opposite phases for |0> and |1>.
     3. Apply the Orcle (function). Which flips the sign of the amplitude
         of the state based on the value of the function: Orcale function
         In quantum computing the an orcale is a black box that used to
@@ -60,7 +64,7 @@ Steps of DJA:
             (*) (1/sqrt(2))(|0> - |1>)
     4. Apply Hadamard gate to the first n qubits.The measurment indicates
         whether the function is constant or balanced:
-        (1/2^n) * sum_{z=0}^{2^n-1} (-1)^z * sum_{x=0}^{2^n-1} \
+        (1/2^n) * sum_{z=0}^{2^n-1} * sum_{x=0}^{2^n-1} \
             (-1)^{f(x) + x.z} |z>
     5. Meassuring the first n qubits, if the result is |0>^n, then the
         function is constant, otherwise it is balanced.
