@@ -84,12 +84,12 @@ The oracles items are:
 
     Circuit for balanced:
         0: ───H───────@───H───M───
-              │
+                      │
         1: ───X───H───X───────────
 
     Circuit for balanced_:
         0: ───H───────@───H───M───
-              │
+                      │
         1: ───X───H───X───X───────
 """
 
@@ -104,7 +104,13 @@ def deutsch_josza_algorithm(oracle: cirq.Operation,
                             ) -> cirq.Circuit:
     """
     Yields a cicuit for DJA algorithm given by the operations
-    implementing the oracle function
+    implementing the oracle function:
+    1- The target q_1 is flipped to state |1> with X gate (CNOT):
+        X|0> = |1> (All the intial states are in the state |0>)
+    2- H gate is applied to both qubit to create a superposition
+    3- The provided oracle operation is applied to the qubits
+    4- Final H gate is applied to q_0
+    5- Measurment
     """
     yield cirq.X(q_1)
     yield cirq.H(q_0), cirq.H(q_1)
