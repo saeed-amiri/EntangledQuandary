@@ -110,7 +110,20 @@ def deutsch_josza_algorithm(oracle: cirq.Operation,
     2- H gate is applied to both qubit to create a superposition
     3- The provided oracle operation is applied to the qubits
     4- Final H gate is applied to q_0
-    5- Measurment
+    5- Measurment:
+        Constant Functions: Measurement results in 0 (indicating constant
+                            function); because the state interferes
+                            constructively for |0⟩^{⊗n}.
+        Balanced Functions: Measurement results in 1 (indicating balanced
+                            function); because the state interferes
+                            destructively for |0⟩^{⊗n} and constructively
+                            for other states
+    By defining multiple types of constant and balanced oracles, you
+    ensure that the Deutsch-Josza algorithm is rigorously tested for its
+    ability to identify the nature of the function it evaluates. This
+    variety in testing makes the algorithm more reliable and robust,
+    proving that it works correctly across different implementations of
+    constant and balanced functions.
     """
     yield cirq.X(q_1)
     yield cirq.H(q_0), cirq.H(q_1)
@@ -134,3 +147,14 @@ ORACLES: dict[str, cirq.Operation] = {
 for KEY, ORACLE in ORACLES.items():
     print(f'Circuit for {KEY}:')
     print(cirq.Circuit(deutsch_josza_algorithm(ORACLE, Q_0, Q_1)), end='\n\n')
+
+# Get a simulator
+SIMULATOR = cirq.Simulator()
+
+# Execute the circuit for each oracle to distinguish constant from balanced
+for KEY, ORACLE in ORACLES.items():
+    result = SIMULATOR.run(
+        cirq.Circuit(deutsch_josza_algorithm(ORACLE, Q_0, Q_1)),
+        repetitions=10
+    )
+    print(f'oracle: `{KEY:<4}` results: `{result}`')
