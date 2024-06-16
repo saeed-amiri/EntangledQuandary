@@ -35,7 +35,7 @@ Steps of DJA:
         H|0> = (|0> + |1>) / sqrt(2) = |+>
         H|1> = (|0> - |1>) / sqrt(2) = |->
         In general, applying H gate to a qubit:
-            H^{(*)n} |x> = (1/sqrt(2)^n) * sum_{z=0}^{2^n-1} |z>
+            H^{(*)n} |x> = (1/sqrt(2)^n) * sum_{z=0}^{2^n-1} (-1)^{x.z}|z>
         Applying H gate to n qubits:
             (1/sqrt(2)^n) * sum_{x=0}^{2^n-1} |x> (*) (1/sqrt(2))(|0> - |1>)
         for n = 1:
