@@ -91,6 +91,7 @@ The oracles items are:
         0: ───H───────@───H───M───
                       │
         1: ───X───H───X───X───────
+
 """
 
 # pylint: disable=import-error
