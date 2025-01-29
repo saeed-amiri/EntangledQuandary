@@ -10,6 +10,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Set Environment Variable for PyO3 Compatibility
+        run: echo "PYO3_USE_ABI3_FORWARD_COMPATIBILITY=1" >> $GITHUB_ENV
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -17,7 +20,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt
+          pip install -r requirements.txt --no-deps
 
       - name: Run linter (black)
         run: black --check .
