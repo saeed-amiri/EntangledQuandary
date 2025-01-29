@@ -8,7 +8,6 @@ jupyterlab
 pytest
 cirq
 qiskit
-black
 click
 pylint
 mypy-extensions
