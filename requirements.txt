@@ -1,0 +1,12 @@
+numpy
+scipy
+sympy
+matplotlib
+seaborn
+pandas
+jupyterlab
+pytest
+cirq
+qiskit
+black
+pylint
