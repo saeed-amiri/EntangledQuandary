@@ -11,3 +11,4 @@ qiskit
 black
 click
 pylint
+mypy-extensions
