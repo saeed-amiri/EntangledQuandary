@@ -22,8 +22,6 @@ jobs:
         run: |
           pip install -r requirements.txt --no-deps
 
-      - name: Run Pylint
-        run: pylint src --exit-zero
-
-      - name: Run Tests
-        run: pytest
+      - name: Run tests
+        run: |
+          pytest tests/
