@@ -9,4 +9,5 @@ pytest
 cirq
 qiskit
 black
+click
 pylint
