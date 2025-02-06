@@ -1,5 +1,5 @@
 # Logical Gates:
-A *logic gate* is device that performs a Boolean function, logical operation performed on one or more binary inputs that produces a single binary output [wiki](https://en.wikipedia.org/wiki/Logic_gate).
+A *logic gate* is device that performs a Boolean function, logical operation performed on one or more binary inputs that produces a single binary output[[wiki](https://en.wikipedia.org/wiki/Logic_gate)].
 
 ## Basic Logic Gates:
 >1. `NOT` Gate (Inverter)
