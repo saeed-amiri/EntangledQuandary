@@ -1,5 +1,5 @@
 # Logical Gates:
-A *logic gate* is device that performs a Boolean function, logical operation performed on one or more binary inputs that produces a single binary output[[wiki](https://en.wikipedia.org/wiki/Logic_gate)].
+A *logic gate* is device that performs a Boolean function, logical operation performed on one or more binary inputs that produces a single binary output [[wiki](https://en.wikipedia.org/wiki/Logic_gate)].
 
 ## Basic Logic Gates:
 >1. `NOT` Gate (Inverter)
@@ -25,3 +25,18 @@ A *logic gate* is device that performs a Boolean function, logical operation per
 >4. `XNOR` Gate (Exclusive `NOR`):
 >- The inverse of `XOR`; outputs true if both inputs are the same,
 >- Symbol: `XOR` + o at the end
+
+## The Basic Operations:
+The overlie dash stands for `NOT`.
+### `AND`  and `OR` Operations:
+    * `AND` operation is denoted with $\cdot$: $A\cdot B$ or just AB
+    * `OR` operation is denoted with $+$: A + B
+#### Basic Axioms and Properties
+    * Commutative property:
+        $A\cdot B = B\cdot A$ and $A + B = B + A$
+    * Associative property:
+        $(A\cdot B)\cdot C = A\cdot(B\cdot C)$ and $(A + B) + C = A + (B + C)$
+    * Distributive Property:
+        $A \cdot (B + C) = (A \cdot B) + (A \cdot C) A \cdot (B + C) = (A \cdot B) + (A \cdot C)$
+        $A + (B \cdot C) = (A + B) \cdot (A + C) A + (B \cdot C) = (A + B) \cdot (A + C)$
+ 
