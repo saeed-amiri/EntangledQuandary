@@ -32,11 +32,11 @@ The overlie dash stands for `NOT`.
 * `AND` operation is denoted with $\cdot$: $A\cdot B$ or just AB
 * `OR` operation is denoted with $+$: A + B
 #### Basic Axioms and Properties
-* Commutative property:
+* **Commutative property:**
     $A\cdot B = B\cdot A$ and $A + B = B + A$
-* Associative property:
+* **Associative property:**
     $(A\cdot B)\cdot C = A\cdot(B\cdot C)$ and $(A + B) + C = A + (B + C)$
-* Distributive Property:
+* **Distributive Property:**
     $A \cdot (B + C) = (A \cdot B) + (A \cdot C) A \cdot (B + C) = (A \cdot B) + (A \cdot C)$
     $A + (B \cdot C) = (A + B) \cdot (A + C) A + (B \cdot C) = (A + B) \cdot (A + C)$
  
