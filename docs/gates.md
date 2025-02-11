@@ -20,23 +20,27 @@ A *logic gate* is device that performs a Boolean function, logical operation per
 >- Outputs the inverse of the `OR` gate,
 >- Symbol: `OR` + o at the end.
 >3. `XOR` Gate (Exclusive `OR`):
->- Outputs true if and only if one one of the inputs is true,
+>- Outputs true if and only if one of the inputs is true,
 >- Symbol: `OR` + parallel initial line of the `OR` gate.
 >4. `XNOR` Gate (Exclusive `NOR`):
 >- The inverse of `XOR`; outputs true if both inputs are the same,
 >- Symbol: `XOR` + o at the end
 
 ## The Basic Operations:
-The overlie dash stands for `NOT`.
+The overlien dash stands for `NOT`.
 ### `AND`  and `OR` Operations:
-* `AND` operation is denoted with $\cdot$: $A\cdot B$ or just AB
-* `OR` operation is denoted with $+$: A + B
+* `AND` operation is denoted with `$\cdot$`: $A\cdot B$ or just $AB$
+* `OR` operation is denoted with `$+$`: $A + B$
 #### Basic Axioms and Properties
 * **Commutative property:**
+
     $A\cdot B = B\cdot A$ and $A + B = B + A$
 * **Associative property:**
+
     $(A\cdot B)\cdot C = A\cdot(B\cdot C)$ and $(A + B) + C = A + (B + C)$
 * **Distributive Property:**
-    $A \cdot (B + C) = (A \cdot B) + (A \cdot C) A \cdot (B + C) = (A \cdot B) + (A \cdot C)$
+
+    $A \cdot (B + C) = (A \cdot B) + (A \cdot C) A \cdot (B + C) = (A \cdot B) + (A \cdot C)$ and
+
     $A + (B \cdot C) = (A + B) \cdot (A + C) A + (B \cdot C) = (A + B) \cdot (A + C)$
  
