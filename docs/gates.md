@@ -26,6 +26,15 @@ A *logic gate* is device that performs a Boolean function, logical operation per
 >- The inverse of `XOR`; outputs true if both inputs are the same,
 >- Symbol: `XOR` + o at the end
 
+|-------|-------|-------|-------|-------|-------|-------|-------|
+|Input A|Input B| AND   | OR    | NAND  | NOR   | XOR   | XNOR  |
+|    0  |  0    |  0    |  0    |  1    |  1    |  0    |   1   |
+|    0  |  1    |  0    |  1    |  1    |  0    |  1    |   0   |
+|    1  |  0    |  0    |  1    |  1    |  0    |  1    |   0   |
+|    1  |  1    |  1    |  1    |  0    |  0    |  0    |   1   |
+|-------|-------|-------|-------|-------|-------|-------|-------|
+
+
 ## The Basic Operations:
 The overlien dash stands for `NOT`.
 ### `AND`  and `OR` Operations:
@@ -40,7 +49,7 @@ The overlien dash stands for `NOT`.
     $(A\cdot B)\cdot C = A\cdot(B\cdot C)$ and $(A + B) + C = A + (B + C)$
 * **Distributive Property:**
 
-    $A \cdot (B + C) = (A \cdot B) + (A \cdot C) A \cdot (B + C) = (A \cdot B) + (A \cdot C)$ and
+    $A \cdot (B + C) = (A \cdot B) + (A \cdot C) A \cdot (B + C) = (A \cdot B) + (A \cdot C)$
 
     $A + (B \cdot C) = (A + B) \cdot (A + C) A + (B \cdot C) = (A + B) \cdot (A + C)$
  
