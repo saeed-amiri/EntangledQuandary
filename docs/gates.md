@@ -26,13 +26,12 @@ A *logic gate* is device that performs a Boolean function, logical operation per
 >- The inverse of `XOR`; outputs true if both inputs are the same,
 >- Symbol: `XOR` + o at the end
 
-|-------|-------|-------|-------|-------|-------|-------|-------|
 |Input A|Input B| AND   | OR    | NAND  | NOR   | XOR   | XNOR  |
+|-------|-------|-------|-------|-------|-------|-------|-------|
 |    0  |  0    |  0    |  0    |  1    |  1    |  0    |   1   |
 |    0  |  1    |  0    |  1    |  1    |  0    |  1    |   0   |
 |    1  |  0    |  0    |  1    |  1    |  0    |  1    |   0   |
 |    1  |  1    |  1    |  1    |  0    |  0    |  0    |   1   |
-|-------|-------|-------|-------|-------|-------|-------|-------|
 
 
 ## The Basic Operations:
