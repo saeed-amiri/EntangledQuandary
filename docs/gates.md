@@ -37,8 +37,8 @@ A *logic gate* is device that performs a Boolean function, logical operation per
 ## The Basic Operations:
 The overlien dash stands for `NOT`.
 ### `AND`  and `OR` Operations:
-* `AND` operation is denoted with `$\cdot$`: $A\cdot B$ or just $AB$
-* `OR` operation is denoted with `$+$`: $A + B$
+* `AND` operation is denoted with "$\cdot$": $A\cdot B$ or just $AB$
+* `OR` operation is denoted with "$+$": $A + B$
 #### Basic Axioms and Properties
 * **Commutative property:**
 
@@ -52,3 +52,78 @@ The overlien dash stands for `NOT`.
 
     $A + (B \cdot C) = (A + B) \cdot (A + C) A + (B \cdot C) = (A + B) \cdot (A + C)$
  
+---
+
+## `NOT`
+
+    ___________________
+    |              |   |
+    |              |   |
+    |             /     ¯¯¯)
+ ¯¯¯¯¯¯¯           |   |¯¯¯
+  ¯¯|¯¯            |   |
+    |______________|___|
+
+
+## `AND`
+
+    _____/ ___/ ______
+    |                 |
+    |                 |
+    |                  ¯¯¯)
+ ¯¯¯¯¯¯¯              |¯¯¯
+  ¯¯|¯¯               |
+    |_________________|
+
+## `NAND`
+
+    ___________________
+    |              |   |
+    |             /    |
+    |              |   |
+    |             /     ¯¯¯)
+ ¯¯¯¯¯¯¯           |   |¯¯¯
+  ¯¯|¯¯            |   |
+    |______________|___|
+
+## `OR`
+
+    __________/ ______
+    |    |____/ ____| |
+    |                 |
+    |                  ¯¯¯)
+ ¯¯¯¯¯¯¯              |¯¯¯
+  ¯¯|¯¯               |
+    |_________________|
+
+## `NOR`
+
+    ______________________
+    |              |  |   |
+    |              |  |   |
+    |             /  /     ¯¯¯)
+ ¯¯¯¯¯¯¯           |  |   |¯¯¯
+  ¯¯|¯¯            |  |   |
+    |______________|__|___|
+
+## `XOR`
+
+    __________________
+    |         |   |   |
+    |         |   |   |
+    |          \__*__/
+ ¯¯¯¯¯¯¯      |   |   |
+  ¯¯|¯¯       |   |   |
+    |_________|___|___|
+
+## `XNOR`
+
+    __________________
+    |                 |
+    |                 |
+    |                  ¯¯¯)
+ ¯¯¯¯¯¯¯              |¯¯¯
+  ¯¯|¯¯  1______1     |
+    |_____      ______|
+          ______
+         0      0
