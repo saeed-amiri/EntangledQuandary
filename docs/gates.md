@@ -34,26 +34,6 @@ A *logic gate* is device that performs a Boolean function, logical operation per
 |    1  |  1    |  1    |  1    |  0    |  0    |  0    |   1   |
 
 
-## The Basic Operations:
-The overlien dash stands for `NOT`.
-### `AND`  and `OR` Operations:
-* `AND` operation is denoted with "$\cdot$": $A\cdot B$ or just $AB$
-* `OR` operation is denoted with "$+$": $A + B$
-#### Basic Axioms and Properties
-* **Commutative property:**
-
-    $A\cdot B = B\cdot A$ and $A + B = B + A$
-* **Associative property:**
-
-    $(A\cdot B)\cdot C = A\cdot(B\cdot C)$ and $(A + B) + C = A + (B + C)$
-* **Distributive Property:**
-
-    $A \cdot (B + C) = (A \cdot B) + (A \cdot C) A \cdot (B + C) = (A \cdot B) + (A \cdot C)$
-
-    $A + (B \cdot C) = (A + B) \cdot (A + C) A + (B \cdot C) = (A + B) \cdot (A + C)$
- 
----
-
 ## `NOT`
 ```html
     ___________________
@@ -128,3 +108,26 @@ The overlien dash stands for `NOT`.
           ______
          0      0
 ```
+
+---
+
+
+## The Basic Operations:
+The overlien dash stands for `NOT`.
+### `AND`  and `OR` Operations:
+* `AND` operation is denoted with "$\cdot$": $A\cdot B$ or just $AB$
+* `OR` operation is denoted with "$+$": $A + B$
+#### Basic Axioms and Properties
+* **Commutative property:**
+
+    $A\cdot B = B\cdot A$ and $A + B = B + A$
+* **Associative property:**
+
+    $(A\cdot B)\cdot C = A\cdot(B\cdot C)$ and $(A + B) + C = A + (B + C)$
+* **Distributive Property:**
+
+    $A \cdot (B + C) = (A \cdot B) + (A \cdot C) A \cdot (B + C) = (A \cdot B) + (A \cdot C)$
+
+    $A + (B \cdot C) = (A + B) \cdot (A + C) A + (B \cdot C) = (A + B) \cdot (A + C)$
+ 
+---
