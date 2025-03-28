@@ -89,12 +89,12 @@ A *logic gate* is device that performs a Boolean function, logical operation per
 ## `XOR`
 ```html
     __________________
-    |         |   |   |
-    |         |   |   |
+    |         |       |
+    |         |       |
     |          \__*__/
- ¯¯¯¯¯¯¯      |   |   |
-  ¯¯|¯¯       |   |   |
-    |_________|___|___|
+ ¯¯¯¯¯¯¯      |       |
+  ¯¯|¯¯       |       |
+    |_________|_______|
 ```
 ## `XNOR`
 ```html
