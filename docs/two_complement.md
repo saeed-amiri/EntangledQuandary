@@ -1,7 +1,7 @@
 # Foundations of Two’s Complement:
-\[
+$$
 -B = \mathrm{NOT}(B) + 1
-\]  
+$$  
 in an $n$-bit binary system. We’ll talk about **wrapping around** in modular arithmetic, which is the real underlying reason.
 
 - **Two’s complement** is a way to represent negative numbers in binary.
@@ -15,9 +15,9 @@ When we store numbers in $n$-bit binary, we’re effectively working **mod $2^n$
 - If you add 1 to $2^n - 1$, you wrap around to 0.
 
 In that sense, saying “$-B$” in $n$-bit binary means:  
-\[
+$$
 (-B) \equiv 2^n - B \pmod{2^n}.
-\]  
+$$  
 This is how we define the negative in a fixed-bit system: the number you add to $B$ to get a total of 0 modulo $2^n$.
 
 
@@ -35,15 +35,15 @@ The expression $2^n - B$:
 
 So:
 
-\[
+$$
 2^n - B = \bigl[(2^n - 1) - B \bigr] + 1 = \mathrm{NOT}(B) + 1.
-\]
+$$
 
 Hence, in an $n$-bit system,
 
-\[
+$$
 -B \;\equiv\; 2^n - B \;\equiv\; \mathrm{NOT}(B) + 1 \pmod{2^n}.
-\]
+$$
 
 That’s the deeper logic.
 
@@ -51,21 +51,21 @@ That’s the deeper logic.
 
 Because $\mathrm{NOT}(B)$ = $(2^n - 1) - B$, we get:
 
-\[
+$$
 B + \mathrm{NOT}(B) = B + \bigl((2^n - 1) - B\bigr) = 2^n - 1.
-\]
+$$
 
 Add 1 more:
 
-\[
+$$
 B + [\mathrm{NOT}(B) + 1] = (2^n - 1) + 1 = 2^n.
-\]
+$$
 
 In binary, adding up to $2^n$ means you produce a carry out of the $n$-th bit, leaving 0 in those $n$ bits. That’s exactly how the system represents 0 in mod $2^n$. So:
 
-\[
+$$
 B + (-B) \equiv 2^n \equiv 0 \;(\text{mod }2^n),
-\]
+$$
 
 which shows $\mathrm{NOT}(B) + 1$ must be $-B$ in this system.
 
@@ -90,9 +90,9 @@ Thus, in a 4-bit system, $10_{decimal}$ is indeed $-6$.
 
 Hence:
 
-\[
+$$
 -B \equiv \mathrm{NOT}(B) + 1 \pmod{2^n}.
-\]
+$$
 
 ---
 ---
@@ -147,9 +147,9 @@ This shows clearly that `101` is the correct binary representation of `-3`.
 In any binary system, if you take any number and **add its NOT**, you get a number that's all ones:
 
 - **General formula:**  
-\[
+$$
 B + \text{NOT}(B) = 111...111
-\]
+$$
 
 For example, let's verify clearly again:
 
@@ -179,15 +179,15 @@ Thus, clearly:
 
 This means:
 
-\[
+$$
 B + [\text{NOT}(B) + 1] = 0
-\]
+$$
 
 If you rearrange this clearly, you see:
 
-\[
+$$
 -B = \text{NOT}(B) + 1
-\]
+$$
 
 In other words, **NOT(B) + 1** is perfectly the negative of B in binary!
 
@@ -214,15 +214,15 @@ Check again clearly:
 
 **Negative numbers are represented using two’s complement** because:
 
-\[
+$$
 B + \text{NOT}(B) = 111...111
-\]
+$$
 
 Adding **1** to this (all ones) gives you a **wrap-around** (zero), so clearly:
 
-\[
+$$
 -B = \text{NOT}(B) + 1
-\]
+$$
 
 ---
 ---
